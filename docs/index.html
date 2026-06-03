@@ -3,44 +3,39 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Академия продаж T2 — демо</title>
+  <title>Академия продаж T2</title>
   <style>
     :root {
-      --bg: #060913;
-      --panel: rgba(14, 20, 38, 0.78);
-      --panel-strong: rgba(22, 31, 58, 0.92);
-      --line: rgba(126, 211, 255, 0.22);
-      --text: #f5f7ff;
-      --muted: #aab7d4;
+      --bg: #050816;
+      --bg-2: #0b1026;
+      --panel: rgba(14, 20, 42, 0.78);
+      --panel-2: rgba(23, 31, 62, 0.9);
+      --line: rgba(119, 210, 255, 0.22);
+      --text: #f7f8ff;
+      --muted: #a9b5d4;
       --cyan: #42c8ff;
-      --blue: #236dff;
-      --violet: #8b6cff;
+      --blue: #315dff;
+      --violet: #8c6dff;
       --pink: #ff4fd8;
-      --lime: #66ffae;
-      --gold: #ffd95a;
-      --danger: #ff6a77;
-      --radius: 22px;
+      --lime: #67ffb1;
+      --gold: #ffd95f;
+      --red: #ff6f7b;
+      --radius: 18px;
       color-scheme: dark;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       min-height: 100vh;
-      background:
-        radial-gradient(circle at 18% 18%, rgba(66, 200, 255, 0.24), transparent 28%),
-        radial-gradient(circle at 82% 8%, rgba(255, 79, 216, 0.18), transparent 25%),
-        radial-gradient(circle at 50% 84%, rgba(102, 255, 174, 0.12), transparent 28%),
-        linear-gradient(120deg, #060913 0%, #091225 46%, #111126 100%);
       color: var(--text);
+      background:
+        radial-gradient(circle at 12% 12%, rgba(66, 200, 255, 0.28), transparent 30%),
+        radial-gradient(circle at 82% 8%, rgba(255, 79, 216, 0.2), transparent 28%),
+        radial-gradient(circle at 65% 80%, rgba(103, 255, 177, 0.12), transparent 34%),
+        linear-gradient(135deg, var(--bg), var(--bg-2) 54%, #15122b);
       overflow-x: hidden;
     }
 
@@ -50,11 +45,11 @@
       inset: 0;
       z-index: -2;
       background-image:
-        linear-gradient(rgba(126, 211, 255, 0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(126, 211, 255, 0.06) 1px, transparent 1px);
-      background-size: 54px 54px;
-      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), transparent 78%);
-      animation: gridDrift 18s linear infinite;
+        linear-gradient(rgba(119, 210, 255, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(119, 210, 255, 0.055) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(to bottom, #000 0%, transparent 82%);
+      animation: gridMove 22s linear infinite;
     }
 
     body::after {
@@ -62,21 +57,16 @@
       position: fixed;
       inset: -30%;
       z-index: -1;
-      background: conic-gradient(from 120deg, transparent, rgba(66, 200, 255, 0.14), transparent, rgba(255, 79, 216, 0.1), transparent);
-      filter: blur(42px);
-      opacity: 0.7;
-      animation: aurora 16s ease-in-out infinite alternate;
+      background: conic-gradient(from 90deg, transparent, rgba(66, 200, 255, 0.12), transparent, rgba(255, 79, 216, 0.12), transparent);
+      filter: blur(54px);
+      opacity: 0.72;
+      animation: aurora 17s ease-in-out infinite alternate;
     }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    button,
-    input {
-      font: inherit;
-    }
+    a { color: inherit; text-decoration: none; }
+    button, input, select, textarea { font: inherit; }
+    button { cursor: pointer; }
+    h1, h2, h3, p { margin-top: 0; }
 
     .shell {
       width: min(1180px, calc(100% - 32px));
@@ -86,25 +76,25 @@
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 20;
-      backdrop-filter: blur(20px);
-      background: rgba(6, 9, 19, 0.72);
-      border-bottom: 1px solid rgba(126, 211, 255, 0.14);
+      z-index: 50;
+      border-bottom: 1px solid rgba(119, 210, 255, 0.16);
+      background: rgba(5, 8, 22, 0.76);
+      backdrop-filter: blur(22px);
     }
 
     .topbar-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
-      padding: 14px 0;
+      gap: 18px;
+      padding: 13px 0;
     }
 
     .brand {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 10px;
-      font-weight: 900;
+      font-weight: 950;
       letter-spacing: 0.02em;
     }
 
@@ -116,38 +106,42 @@
       border-radius: 12px;
       background: linear-gradient(135deg, var(--cyan), var(--violet));
       color: #03101d;
-      box-shadow: 0 0 30px rgba(66, 200, 255, 0.55);
+      box-shadow: 0 0 28px rgba(66, 200, 255, 0.46);
     }
 
     .nav {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
       justify-content: flex-end;
     }
 
-    .nav a {
-      padding: 9px 12px;
-      border: 1px solid rgba(126, 211, 255, 0.14);
+    .nav a, .ghost-pill {
+      min-height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 12px;
+      border: 1px solid rgba(119, 210, 255, 0.16);
       border-radius: 999px;
       color: var(--muted);
+      background: rgba(255, 255, 255, 0.03);
       font-size: 13px;
       transition: 0.2s ease;
     }
 
-    .nav a:hover {
+    .nav a:hover, .ghost-pill:hover {
       color: var(--text);
-      border-color: rgba(66, 200, 255, 0.6);
-      box-shadow: 0 0 24px rgba(66, 200, 255, 0.2);
+      border-color: rgba(66, 200, 255, 0.55);
+      box-shadow: 0 0 22px rgba(66, 200, 255, 0.16);
     }
 
     .hero {
-      position: relative;
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
+      grid-template-columns: 1.03fr 0.97fr;
       gap: 34px;
       align-items: center;
-      min-height: 650px;
+      min-height: 670px;
       padding: 46px 0 54px;
     }
 
@@ -155,9 +149,9 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
       color: var(--cyan);
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 900;
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -169,22 +163,28 @@
       height: 8px;
       border-radius: 999px;
       background: var(--lime);
-      box-shadow: 0 0 16px var(--lime);
-    }
-
-    h1,
-    h2,
-    h3,
-    p {
-      margin-top: 0;
+      box-shadow: 0 0 18px var(--lime);
     }
 
     h1 {
-      max-width: 780px;
+      max-width: 760px;
       margin-bottom: 22px;
-      font-size: clamp(42px, 7vw, 86px);
+      font-size: clamp(42px, 7vw, 82px);
       line-height: 0.94;
       letter-spacing: 0;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: 22px;
+      line-height: 1.18;
     }
 
     .gradient-text {
@@ -195,8 +195,8 @@
     }
 
     .lead {
-      max-width: 690px;
-      color: #cdd7ef;
+      max-width: 680px;
+      color: #d3dcf7;
       font-size: clamp(17px, 2vw, 21px);
       line-height: 1.55;
     }
@@ -205,33 +205,33 @@
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
-      margin: 28px 0 26px;
+      margin: 28px 0;
     }
 
     .btn {
+      min-height: 46px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 48px;
-      padding: 0 20px;
+      gap: 8px;
+      padding: 0 18px;
       border: 0;
       border-radius: 999px;
-      background: linear-gradient(135deg, var(--cyan), #6ad6ff);
+      background: linear-gradient(135deg, var(--cyan), #6ed7ff);
       color: #03101d;
       font-weight: 900;
-      cursor: pointer;
-      box-shadow: 0 16px 38px rgba(66, 200, 255, 0.27);
+      box-shadow: 0 16px 34px rgba(66, 200, 255, 0.27);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 20px 50px rgba(66, 200, 255, 0.38);
+      box-shadow: 0 22px 46px rgba(66, 200, 255, 0.36);
     }
 
     .btn.secondary {
-      border: 1px solid rgba(126, 211, 255, 0.28);
-      background: rgba(10, 15, 31, 0.74);
+      border: 1px solid rgba(119, 210, 255, 0.22);
+      background: rgba(255, 255, 255, 0.045);
       color: var(--text);
       box-shadow: none;
     }
@@ -239,28 +239,75 @@
     .btn.pink {
       background: linear-gradient(135deg, var(--pink), var(--violet));
       color: white;
-      box-shadow: 0 16px 40px rgba(255, 79, 216, 0.24);
+      box-shadow: 0 18px 40px rgba(255, 79, 216, 0.26);
     }
+
+    .btn.small {
+      min-height: 36px;
+      padding: 0 12px;
+      font-size: 13px;
+    }
+
+    .hero-art {
+      position: relative;
+      min-height: 570px;
+    }
+
+    .poster {
+      position: absolute;
+      inset: 32px 0 0;
+      border: 1px solid rgba(119, 210, 255, 0.22);
+      border-radius: 34px;
+      background:
+        linear-gradient(180deg, rgba(5, 8, 22, 0.04), rgba(5, 8, 22, 0.78)),
+        url("academy-neon-mascots.png") center / cover no-repeat;
+      box-shadow: 0 34px 90px rgba(0, 0, 0, 0.48), 0 0 90px rgba(66, 200, 255, 0.18);
+      overflow: hidden;
+      animation: floatPoster 6s ease-in-out infinite;
+    }
+
+    .poster::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 12%, rgba(255, 255, 255, 0.14), transparent 36%);
+      transform: translateX(-80%);
+      animation: shine 5.2s ease-in-out infinite;
+    }
+
+    .speech-card {
+      position: absolute;
+      padding: 16px;
+      border: 1px solid rgba(119, 210, 255, 0.22);
+      border-radius: var(--radius);
+      background: rgba(7, 12, 28, 0.88);
+      box-shadow: 0 0 34px rgba(66, 200, 255, 0.14);
+      line-height: 1.45;
+    }
+
+    .speech-card strong { color: var(--gold); }
+    .speech-card.one { left: -8px; bottom: 30px; max-width: 310px; }
+    .speech-card.two { right: 6px; top: 10px; max-width: 260px; border-color: rgba(103, 255, 177, 0.32); }
+    .speech-card.two strong { color: var(--lime); }
 
     .hero-stats {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 12px;
-      max-width: 680px;
+      max-width: 710px;
     }
 
     .stat {
-      padding: 16px;
-      border: 1px solid rgba(126, 211, 255, 0.16);
-      border-radius: 18px;
-      background: rgba(15, 24, 45, 0.68);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      padding: 15px;
+      border: 1px solid rgba(119, 210, 255, 0.16);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.04);
     }
 
     .stat strong {
       display: block;
-      font-size: 24px;
-      color: var(--text);
+      font-size: 23px;
+      line-height: 1.1;
     }
 
     .stat span {
@@ -268,86 +315,18 @@
       font-size: 13px;
     }
 
-    .hero-art {
-      position: relative;
-      min-height: 560px;
-    }
-
-    .poster {
-      position: absolute;
-      inset: 28px 0 0;
-      border: 1px solid rgba(126, 211, 255, 0.2);
-      border-radius: 34px;
-      background:
-        linear-gradient(180deg, rgba(7, 12, 24, 0.04), rgba(7, 12, 24, 0.72)),
-        url("academy-neon-mascots.png") center / cover no-repeat;
-      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.5), 0 0 80px rgba(66, 200, 255, 0.18);
-      overflow: hidden;
-      animation: posterFloat 6s ease-in-out infinite;
-    }
-
-    .poster::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, transparent 10%, rgba(255, 255, 255, 0.12), transparent 34%);
-      transform: translateX(-70%);
-      animation: shine 5s ease-in-out infinite;
-    }
-
-    .floating-badge {
-      position: absolute;
-      right: 12px;
-      top: 8px;
-      max-width: 230px;
-      padding: 16px;
-      border: 1px solid rgba(102, 255, 174, 0.35);
-      border-radius: 18px;
-      background: rgba(9, 18, 27, 0.84);
-      box-shadow: 0 0 34px rgba(102, 255, 174, 0.22);
-      animation: badgeFloat 4s ease-in-out infinite;
-    }
-
-    .floating-badge strong {
-      color: var(--lime);
-    }
-
-    .speech {
-      position: absolute;
-      left: -10px;
-      bottom: 22px;
-      max-width: 310px;
-      padding: 18px;
-      border: 1px solid rgba(255, 217, 90, 0.3);
-      border-radius: 18px;
-      background: rgba(10, 13, 25, 0.86);
-      box-shadow: 0 0 34px rgba(255, 217, 90, 0.16);
-    }
-
-    .speech b {
-      color: var(--gold);
-    }
-
-    section {
-      padding: 54px 0;
-    }
+    section { padding: 52px 0; }
 
     .section-head {
       display: flex;
       align-items: flex-end;
       justify-content: space-between;
-      gap: 20px;
+      gap: 22px;
       margin-bottom: 24px;
     }
 
-    .section-head h2 {
-      margin-bottom: 0;
-      font-size: clamp(30px, 4vw, 48px);
-      line-height: 1;
-    }
-
     .section-head p {
-      max-width: 470px;
+      max-width: 540px;
       margin-bottom: 0;
       color: var(--muted);
       line-height: 1.5;
@@ -355,48 +334,40 @@
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 18px;
     }
 
+    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
     .card {
       position: relative;
-      min-height: 100%;
-      padding: 22px;
-      border: 1px solid rgba(126, 211, 255, 0.18);
+      padding: 20px;
+      border: 1px solid rgba(119, 210, 255, 0.17);
       border-radius: var(--radius);
       background: var(--panel);
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 24px 60px rgba(0, 0, 0, 0.22);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 24px 58px rgba(0, 0, 0, 0.22);
       overflow: hidden;
-      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(66, 200, 255, 0.48);
-      box-shadow: 0 26px 70px rgba(0, 0, 0, 0.28), 0 0 44px rgba(66, 200, 255, 0.16);
-    }
-
-    .card::before {
+    .card.glow::before {
       content: "";
       position: absolute;
       inset: 0 0 auto;
       height: 3px;
       background: linear-gradient(90deg, var(--cyan), var(--pink), var(--lime));
-      opacity: 0.85;
+      opacity: 0.88;
     }
 
-    .mascot-face {
-      display: grid;
-      width: 78px;
-      height: 78px;
-      margin-bottom: 16px;
-      place-items: center;
-      border-radius: 26px;
-      background: linear-gradient(135deg, rgba(66, 200, 255, 0.18), rgba(255, 79, 216, 0.18));
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      font-size: 42px;
-      animation: bob 4s ease-in-out infinite;
+    .card.hover {
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card.hover:hover {
+      transform: translateY(-4px);
+      border-color: rgba(66, 200, 255, 0.48);
+      box-shadow: 0 28px 66px rgba(0, 0, 0, 0.3), 0 0 42px rgba(66, 200, 255, 0.14);
     }
 
     .kicker {
@@ -404,66 +375,71 @@
       color: var(--cyan);
       font-size: 12px;
       font-weight: 900;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.13em;
       text-transform: uppercase;
     }
 
-    .card h3 {
-      margin-bottom: 10px;
-      font-size: 24px;
-    }
+    .muted { color: var(--muted); line-height: 1.5; }
+    .gold { color: var(--gold); }
+    .lime { color: var(--lime); }
+    .cyan { color: var(--cyan); }
 
-    .card p,
-    .muted {
-      color: var(--muted);
-      line-height: 1.5;
-    }
-
-    .mission-layout {
+    .login-panel {
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 18px;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 16px;
     }
 
-    .mission-list {
+    .field {
       display: grid;
-      gap: 12px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
+      gap: 7px;
     }
 
-    .mission-item {
+    .field label {
+      color: #d7def5;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      min-height: 44px;
+      border: 1px solid rgba(119, 210, 255, 0.18);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.055);
+      color: var(--text);
+      padding: 0 12px;
+      outline: none;
+    }
+
+    textarea { padding: 12px; resize: vertical; }
+    select option { color: #111827; }
+
+    .profile-strip {
       display: grid;
       grid-template-columns: auto 1fr auto;
       gap: 14px;
       align-items: center;
-      padding: 14px;
-      border: 1px solid rgba(126, 211, 255, 0.14);
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.035);
+      padding: 16px;
+      border: 1px solid rgba(255, 217, 95, 0.26);
+      border-radius: var(--radius);
+      background: rgba(255, 217, 95, 0.07);
     }
 
-    .check {
+    .avatar {
       display: grid;
-      width: 32px;
-      height: 32px;
+      width: 54px;
+      height: 54px;
       place-items: center;
-      border-radius: 999px;
-      background: rgba(102, 255, 174, 0.13);
-      color: var(--lime);
-      border: 1px solid rgba(102, 255, 174, 0.32);
-      font-weight: 900;
-    }
-
-    .xp {
-      color: var(--gold);
-      font-weight: 900;
+      border-radius: 18px;
+      background: linear-gradient(135deg, var(--cyan), var(--violet));
+      color: #05101b;
+      font-weight: 950;
     }
 
     .progress {
       height: 12px;
-      margin: 16px 0 6px;
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.09);
       overflow: hidden;
@@ -471,39 +447,249 @@
 
     .progress span {
       display: block;
-      width: var(--value, 42%);
+      width: var(--value, 0%);
       height: 100%;
       border-radius: inherit;
       background: linear-gradient(90deg, var(--cyan), var(--lime));
-      box-shadow: 0 0 18px rgba(102, 255, 174, 0.45);
-      transition: width 0.4s ease;
+      box-shadow: 0 0 18px rgba(103, 255, 177, 0.44);
+      transition: width 0.35s ease;
     }
 
-    .upload-zone {
+    .path-map {
       display: grid;
       gap: 14px;
-      min-height: 256px;
+    }
+
+    .module-card {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .module-num {
+      display: grid;
+      width: 48px;
+      height: 48px;
       place-items: center;
-      padding: 24px;
-      border: 1px dashed rgba(66, 200, 255, 0.45);
-      border-radius: 22px;
-      background:
-        radial-gradient(circle at 50% 0%, rgba(66, 200, 255, 0.16), transparent 48%),
-        rgba(255, 255, 255, 0.035);
-      text-align: center;
+      border-radius: 16px;
+      background: rgba(66, 200, 255, 0.12);
+      border: 1px solid rgba(66, 200, 255, 0.3);
+      color: var(--cyan);
+      font-weight: 950;
+    }
+
+    .module-card.done .module-num {
+      color: #05101b;
+      background: linear-gradient(135deg, var(--lime), var(--cyan));
+    }
+
+    .tag-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 9px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(119, 210, 255, 0.14);
+      color: #d7def5;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .tag.ok {
+      color: var(--lime);
+      border-color: rgba(103, 255, 177, 0.34);
+      background: rgba(103, 255, 177, 0.09);
+    }
+
+    .tag.warn {
+      color: var(--gold);
+      border-color: rgba(255, 217, 95, 0.34);
+      background: rgba(255, 217, 95, 0.09);
+    }
+
+    .mentor-rail {
+      position: sticky;
+      top: 78px;
+      align-self: start;
+      display: grid;
+      gap: 12px;
+    }
+
+    .mentor {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 13px;
+      align-items: center;
+      padding: 14px;
+      border: 1px solid rgba(119, 210, 255, 0.18);
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    .mentor-face {
+      display: grid;
+      width: 58px;
+      height: 58px;
+      place-items: center;
+      border-radius: 21px;
+      background: linear-gradient(135deg, rgba(66, 200, 255, 0.18), rgba(255, 79, 216, 0.18));
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      font-size: 34px;
+      animation: bob 4s ease-in-out infinite;
+    }
+
+    .lesson-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .lesson-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .lesson-tab {
+      min-height: 38px;
+      border: 1px solid rgba(119, 210, 255, 0.16);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.045);
+      color: var(--muted);
+      padding: 0 12px;
+      font-weight: 850;
+    }
+
+    .lesson-tab.active {
+      color: #03101d;
+      background: linear-gradient(135deg, var(--cyan), var(--lime));
+      border-color: transparent;
+    }
+
+    .lesson-body {
+      display: grid;
+      gap: 14px;
+    }
+
+    .rule-list {
+      display: grid;
+      gap: 10px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .rule-list li {
+      padding: 12px;
+      border: 1px solid rgba(119, 210, 255, 0.14);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.04);
+      line-height: 1.45;
+    }
+
+    .quiz {
+      display: grid;
+      gap: 10px;
+    }
+
+    .answer {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid rgba(119, 210, 255, 0.16);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.045);
+      color: var(--text);
+      text-align: left;
+      transition: 0.2s ease;
+    }
+
+    .answer:hover {
+      border-color: rgba(66, 200, 255, 0.46);
+      background: rgba(66, 200, 255, 0.08);
+    }
+
+    .answer.correct {
+      border-color: rgba(103, 255, 177, 0.55);
+      background: rgba(103, 255, 177, 0.12);
+    }
+
+    .answer.wrong {
+      border-color: rgba(255, 111, 123, 0.55);
+      background: rgba(255, 111, 123, 0.11);
+    }
+
+    .trainer-screen {
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      gap: 18px;
+    }
+
+    .scenario-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .scenario-btn {
+      padding: 13px;
+      border: 1px solid rgba(119, 210, 255, 0.16);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.045);
+      color: var(--text);
+      text-align: left;
+    }
+
+    .scenario-btn.active {
+      border-color: rgba(66, 200, 255, 0.5);
+      background: rgba(66, 200, 255, 0.1);
+    }
+
+    .customer {
+      padding: 18px;
+      border: 1px solid rgba(255, 217, 95, 0.3);
+      border-radius: var(--radius);
+      background: rgba(255, 217, 95, 0.08);
+      font-size: 18px;
+      line-height: 1.45;
+    }
+
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .mission {
+      display: grid;
+      gap: 12px;
+    }
+
+    .mission.done {
+      border-color: rgba(103, 255, 177, 0.4);
+      box-shadow: 0 0 34px rgba(103, 255, 177, 0.12);
     }
 
     .file-label {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 46px;
-      padding: 0 18px;
+      min-height: 38px;
+      padding: 0 12px;
+      border: 1px dashed rgba(66, 200, 255, 0.46);
       border-radius: 999px;
-      background: rgba(66, 200, 255, 0.14);
-      border: 1px solid rgba(66, 200, 255, 0.34);
-      cursor: pointer;
-      font-weight: 800;
+      color: #d7def5;
+      background: rgba(66, 200, 255, 0.08);
+      font-weight: 850;
     }
 
     .file-label input {
@@ -514,59 +700,6 @@
       pointer-events: none;
     }
 
-    .toast {
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      z-index: 50;
-      max-width: 330px;
-      padding: 16px 18px;
-      border: 1px solid rgba(102, 255, 174, 0.32);
-      border-radius: 18px;
-      background: rgba(8, 14, 24, 0.94);
-      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.36), 0 0 28px rgba(102, 255, 174, 0.18);
-      transform: translateY(120%);
-      opacity: 0;
-      transition: 0.28s ease;
-    }
-
-    .toast.show {
-      transform: translateY(0);
-      opacity: 1;
-    }
-
-    .trainer {
-      display: grid;
-      gap: 12px;
-    }
-
-    .answer {
-      width: 100%;
-      padding: 14px 16px;
-      border: 1px solid rgba(126, 211, 255, 0.16);
-      border-radius: 16px;
-      background: rgba(255, 255, 255, 0.045);
-      color: var(--text);
-      text-align: left;
-      cursor: pointer;
-      transition: 0.2s ease;
-    }
-
-    .answer:hover {
-      border-color: rgba(66, 200, 255, 0.48);
-      background: rgba(66, 200, 255, 0.09);
-    }
-
-    .answer.good {
-      border-color: rgba(102, 255, 174, 0.55);
-      background: rgba(102, 255, 174, 0.1);
-    }
-
-    .answer.bad {
-      border-color: rgba(255, 106, 119, 0.55);
-      background: rgba(255, 106, 119, 0.1);
-    }
-
     .leaderboard {
       display: grid;
       gap: 10px;
@@ -575,128 +708,74 @@
     .leader {
       display: grid;
       grid-template-columns: 44px 1fr auto;
-      align-items: center;
       gap: 12px;
+      align-items: center;
       padding: 13px;
-      border: 1px solid rgba(126, 211, 255, 0.13);
+      border: 1px solid rgba(119, 210, 255, 0.14);
       border-radius: 16px;
-      background: rgba(255, 255, 255, 0.035);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .leader.current {
+      border-color: rgba(255, 217, 95, 0.44);
+      background: rgba(255, 217, 95, 0.08);
     }
 
     .rank {
       display: grid;
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       place-items: center;
-      border-radius: 14px;
-      background: rgba(66, 200, 255, 0.12);
+      border-radius: 12px;
+      background: rgba(66, 200, 255, 0.13);
       color: var(--cyan);
-      font-weight: 900;
+      font-weight: 950;
     }
 
-    .leader.current {
-      border-color: rgba(255, 217, 90, 0.42);
-      box-shadow: 0 0 24px rgba(255, 217, 90, 0.1);
-    }
-
-    .admin-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
-
-    .proof {
-      display: grid;
-      gap: 12px;
-      padding: 16px;
-      border: 1px solid rgba(126, 211, 255, 0.14);
+    .toast {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 90;
+      width: min(360px, calc(100% - 36px));
+      padding: 15px 16px;
+      border: 1px solid rgba(103, 255, 177, 0.32);
       border-radius: 18px;
-      background: rgba(255, 255, 255, 0.035);
+      background: rgba(8, 14, 26, 0.96);
+      box-shadow: 0 18px 54px rgba(0, 0, 0, 0.36), 0 0 28px rgba(103, 255, 177, 0.16);
+      transform: translateY(130%);
+      opacity: 0;
+      transition: 0.26s ease;
     }
 
-    .proof-top {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .status {
-      display: inline-flex;
-      align-items: center;
-      min-height: 30px;
-      padding: 0 10px;
-      border-radius: 999px;
-      background: rgba(255, 217, 90, 0.13);
-      color: var(--gold);
-      font-size: 12px;
-      font-weight: 900;
-    }
-
-    .status.ok {
-      background: rgba(102, 255, 174, 0.13);
-      color: var(--lime);
-    }
-
-    .status.no {
-      background: rgba(255, 106, 119, 0.13);
-      color: var(--danger);
-    }
-
-    .mini-actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .mini {
-      min-height: 36px;
-      padding: 0 12px;
-      border: 1px solid rgba(126, 211, 255, 0.2);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.055);
-      color: var(--text);
-      cursor: pointer;
-      font-weight: 800;
-    }
-
-    .mini.ok {
-      border-color: rgba(102, 255, 174, 0.38);
-      color: var(--lime);
-    }
-
-    .mini.no {
-      border-color: rgba(255, 106, 119, 0.38);
-      color: var(--danger);
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
     }
 
     .demo-note {
-      margin-top: 26px;
-      padding: 18px;
-      border: 1px solid rgba(255, 217, 90, 0.23);
-      border-radius: 18px;
-      background: rgba(255, 217, 90, 0.07);
-      color: #f8e7aa;
+      margin-top: 22px;
+      padding: 16px;
+      border: 1px solid rgba(255, 217, 95, 0.25);
+      border-radius: var(--radius);
+      background: rgba(255, 217, 95, 0.07);
+      color: #f7e7ad;
       line-height: 1.5;
     }
 
-    @keyframes gridDrift {
+    @keyframes gridMove {
       from { background-position: 0 0; }
-      to { background-position: 54px 54px; }
+      to { background-position: 56px 56px; }
     }
 
     @keyframes aurora {
       from { transform: rotate(0deg) scale(1); }
-      to { transform: rotate(16deg) scale(1.08); }
+      to { transform: rotate(18deg) scale(1.08); }
     }
 
-    @keyframes posterFloat {
+    @keyframes floatPoster {
       0%, 100% { transform: translateY(0) rotate(-1deg); }
       50% { transform: translateY(-12px) rotate(1deg); }
-    }
-
-    @keyframes badgeFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
     }
 
     @keyframes shine {
@@ -709,58 +788,27 @@
       50% { transform: translateY(-7px); }
     }
 
-    @media (max-width: 900px) {
-      .hero,
-      .mission-layout,
-      .admin-grid {
+    @media (max-width: 980px) {
+      .hero, .lesson-layout, .trainer-screen {
         grid-template-columns: 1fr;
       }
-
-      .hero {
-        min-height: auto;
-      }
-
-      .hero-art {
-        min-height: 480px;
-      }
-
-      .grid {
+      .hero { min-height: auto; }
+      .hero-art { min-height: 500px; }
+      .grid-2, .grid-3, .grid-4, .mission-grid {
         grid-template-columns: 1fr;
       }
-
-      .section-head {
-        display: block;
-      }
+      .mentor-rail { position: static; }
     }
 
-    @media (max-width: 640px) {
-      .topbar-inner {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .nav {
-        justify-content: flex-start;
-      }
-
-      .hero-stats {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-art {
-        min-height: 420px;
-      }
-
-      .floating-badge,
-      .speech {
-        position: relative;
-        inset: auto;
-        margin-top: 12px;
-      }
-
-      .poster {
-        inset: 0;
-      }
+    @media (max-width: 680px) {
+      .topbar-inner { align-items: flex-start; flex-direction: column; }
+      .nav { justify-content: flex-start; }
+      .hero-stats, .login-panel { grid-template-columns: 1fr; }
+      .hero-art { min-height: 420px; }
+      .poster { inset: 0; }
+      .speech-card { position: relative; inset: auto; margin-top: 12px; }
+      .section-head { display: block; }
+      .module-card, .profile-strip { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -771,11 +819,12 @@
         <span class="brand-mark">T2</span>
         <span>Академия продаж</span>
       </a>
-      <nav class="nav" aria-label="Разделы демо">
-        <a href="#missions">Миссии</a>
+      <nav class="nav" aria-label="Разделы платформы">
+        <a href="#path">Путь</a>
+        <a href="#lessons">Уроки</a>
         <a href="#trainer">Тренажер</a>
+        <a href="#missions">Миссии</a>
         <a href="#rating">Рейтинг</a>
-        <a href="#admin">Админка</a>
       </nav>
     </div>
   </header>
@@ -783,338 +832,696 @@
   <main id="top">
     <div class="shell hero">
       <div>
-        <div class="eyebrow">Демо для тестирования сценариев</div>
-        <h1>Продажи как игра, где каждый день есть <span class="gradient-text">миссия и титул</span></h1>
-        <p class="lead">Продавец изучает акции T2 и внутренние предложения дилера, тренируется на возражениях, выполняет дневной план, загружает чек и растет в рейтинге команды.</p>
+        <div class="eyebrow">Игровая платформа стажера</div>
+        <h1>Учимся продавать T2 через <span class="gradient-text">практику, миссии и титулы</span></h1>
+        <p class="lead">Руководитель может зайти как сотрудник, пройти маршрут обучения, изучить акции, потренироваться на клиентах, выполнить дневную миссию и увидеть прогресс в рейтинге.</p>
         <div class="actions">
-          <a class="btn" href="#missions">Пройти миссию дня</a>
-          <a class="btn secondary" href="#admin">Открыть админку</a>
+          <a class="btn" href="#login">Начать путь</a>
+          <a class="btn secondary" href="#lessons">Посмотреть уроки</a>
         </div>
-        <div class="hero-stats" aria-label="Ключевые метрики">
-          <div class="stat"><strong id="xpTotal">420 XP</strong><span>личный опыт</span></div>
-          <div class="stat"><strong id="titleNow">Охотник за лидами</strong><span>текущий титул</span></div>
-          <div class="stat"><strong id="proofStatus">Чек не загружен</strong><span>статус миссии</span></div>
+        <div class="hero-stats">
+          <div class="stat"><strong id="heroXp">0 XP</strong><span>опыт стажера</span></div>
+          <div class="stat"><strong id="heroTitle">Новичок</strong><span>текущий титул</span></div>
+          <div class="stat"><strong id="heroProgress">0%</strong><span>готовность маршрута</span></div>
         </div>
       </div>
-
       <div class="hero-art" aria-hidden="true">
         <div class="poster"></div>
-        <div class="floating-badge"><strong>Сова KPI:</strong><br>“Вижу цель, вижу рейтинг. Не вижу причины сдаваться.”</div>
-        <div class="speech"><b>Панда Питч:</b><br>“Начнем с золотого номера. Это не просто SIM, это красивый вход в разговор.”</div>
+        <div class="speech-card two"><strong>Сова KPI:</strong><br>“Сначала теория, потом тренажер, потом миссия. Так рейтинг растет честно.”</div>
+        <div class="speech-card one"><strong>Панда Питч:</strong><br>“Не зубрим. Переводим акцию в человеческую выгоду и тренируем фразу.”</div>
       </div>
     </div>
 
-    <section class="shell" id="guides">
+    <section class="shell" id="login">
       <div class="section-head">
-        <h2>Наставники</h2>
-        <p>Не персонажи ради красоты, а игровые подсказчики: каждый ведет продавца по своему типу задачи.</p>
+        <div>
+          <span class="eyebrow">Регистрация</span>
+          <h2>Войти как стажер</h2>
+        </div>
+        <p>В демо-версии аккаунт сохраняется только в этом браузере. Этого достаточно, чтобы пройти путь и показать руководителям механику продукта.</p>
       </div>
-      <div class="grid">
-        <article class="card">
-          <div class="mascot-face">🐼</div>
-          <div class="kicker">Скрипты</div>
-          <h3>Панда Питч</h3>
-          <p>Подсказывает, как начать диалог, мягко перейти к акции и не потерять клиента после первой фразы.</p>
-        </article>
-        <article class="card">
-          <div class="mascot-face">🦥</div>
-          <div class="kicker">Миссии</div>
-          <h3>Ленивец Лид</h3>
-          <p>Разбивает план на простые шаги дня: SIM, рассрочка, аксессуар, чек. Спокойно, но по делу.</p>
-        </article>
-        <article class="card">
-          <div class="mascot-face">🦉</div>
-          <div class="kicker">Рейтинг</div>
-          <h3>Сова KPI</h3>
-          <p>Следит за прогрессом, титулами, еженедельным рейтингом и честной проверкой выполненных продаж.</p>
-        </article>
+      <div class="card glow">
+        <div class="profile-strip" id="profileStrip">
+          <div class="avatar" id="avatar">T2</div>
+          <div>
+            <h3 id="profileName">Гость Академии</h3>
+            <p class="muted" id="profileMeta">Выберите имя и торговую точку, чтобы начать путь.</p>
+          </div>
+          <button class="btn secondary small" id="resetBtn" type="button">Сбросить демо</button>
+        </div>
+        <div class="login-panel">
+          <div class="field">
+            <label for="nameInput">ФИО сотрудника</label>
+            <input id="nameInput" placeholder="Например, Анастасия Мельникова">
+          </div>
+          <div class="field">
+            <label for="salonInput">Торговая точка</label>
+            <select id="salonInput">
+              <option>Пермь · ТЦ Планета</option>
+              <option>Кунгур · Бачурина 56А</option>
+              <option>Березники · Мира 82</option>
+              <option>Соликамск · Северная 55</option>
+              <option>Демо-точка руководителя</option>
+            </select>
+          </div>
+        </div>
+        <div class="actions">
+          <button class="btn" id="saveProfile" type="button">Зарегистрироваться</button>
+          <a class="btn secondary" href="#path">К карте обучения</a>
+        </div>
       </div>
     </section>
 
-    <section class="shell" id="missions">
+    <section class="shell" id="path">
       <div class="section-head">
-        <h2>Миссия дня</h2>
-        <p>Пример практического задания: продавец делает реальные продажи, а затем прикладывает чек на проверку.</p>
+        <div>
+          <span class="eyebrow">Дорожная карта</span>
+          <h2>8 уровней стажера</h2>
+        </div>
+        <p>Маршрут собран из тетради стажера и тренингов: сначала база, затем операторские продукты, продажи, акции, рассрочка, устройства и практика.</p>
       </div>
-      <div class="mission-layout">
-        <article class="card">
-          <div class="kicker">Сегодня</div>
-          <h3>Комбо “Золотой старт”</h3>
-          <ul class="mission-list">
-            <li class="mission-item"><span class="check">1</span><span>Продать 2 SIM по акции “Золотой номер”</span><span class="xp">+160 XP</span></li>
-            <li class="mission-item"><span class="check">2</span><span>Оформить 1 заявку на рассрочку</span><span class="xp">+120 XP</span></li>
-            <li class="mission-item"><span class="check">3</span><span>Продать носимую электронику или наушники</span><span class="xp">+140 XP</span></li>
-          </ul>
-          <div class="progress" aria-label="Прогресс миссии"><span id="progressBar"></span></div>
-          <p class="muted" id="progressText">Готово на 42%. Загрузите чек, чтобы отправить миссию на проверку.</p>
-        </article>
-
-        <article class="card">
-          <div class="kicker">Практика</div>
-          <h3>Загрузка чека</h3>
-          <div class="upload-zone">
-            <div>
-              <strong>Прикрепите фото или PDF</strong>
-              <p class="muted">В этой демо-версии файл не отправляется на сервер, но сценарий проверки работает.</p>
-            </div>
-            <label class="file-label">
-              Выбрать чек
-              <input id="receiptInput" type="file" accept="image/*,.pdf">
-            </label>
-            <button class="btn pink" id="sendReceipt" type="button">Отправить на проверку</button>
-            <span class="status" id="receiptName">Файл не выбран</span>
+      <div class="grid grid-2">
+        <div class="path-map" id="moduleMap"></div>
+        <aside class="mentor-rail">
+          <div class="mentor">
+            <div class="mentor-face">🐼</div>
+            <div><strong>Панда Питч</strong><p class="muted">Объясняет фразу продавца и подсказывает, как начать разговор.</p></div>
           </div>
-        </article>
+          <div class="mentor">
+            <div class="mentor-face">🦉</div>
+            <div><strong>Сова KPI</strong><p class="muted">Проверяет тесты, XP, титулы и качество прохождения.</p></div>
+          </div>
+          <div class="mentor">
+            <div class="mentor-face">🦥</div>
+            <div><strong>Ленивец Лид</strong><p class="muted">Ведет по практическим миссиям без суеты, но до результата.</p></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="shell" id="lessons">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Учебные модули</span>
+          <h2>Теория превращается в действие</h2>
+        </div>
+        <p>Каждый урок содержит смысл, условия, фразу продавца, ошибки и мини-проверку. Это не библиотека файлов, а пошаговое обучение.</p>
+      </div>
+      <div class="lesson-layout">
+        <div class="card glow">
+          <div class="lesson-tabs" id="lessonTabs"></div>
+          <div class="lesson-body" id="lessonBody"></div>
+        </div>
+        <aside class="mentor-rail">
+          <div class="card">
+            <div class="mentor">
+              <div class="mentor-face" id="activeMentorFace">🐼</div>
+              <div>
+                <strong id="activeMentorName">Панда Питч</strong>
+                <p class="muted" id="activeMentorLine">Выберите урок, и я подскажу, как объяснить его клиенту.</p>
+              </div>
+            </div>
+            <div class="progress" style="margin-top: 16px"><span id="courseProgress"></span></div>
+            <p class="muted" id="courseProgressText" style="margin: 10px 0 0">0 уроков завершено</p>
+          </div>
+        </aside>
       </div>
     </section>
 
     <section class="shell" id="trainer">
       <div class="section-head">
-        <h2>Тренажер диалогов</h2>
-        <p>Короткая практика перед сменой: продавец выбирает ответ, получает обратную связь и XP за правильную логику.</p>
-      </div>
-      <article class="card">
-        <div class="kicker">Клиент</div>
-        <h3>“Золотой номер мне не нужен, я просто посмотреть.”</h3>
-        <div class="trainer">
-          <button class="answer" data-good="false">“Хорошо, тогда посмотрите витрину.”</button>
-          <button class="answer" data-good="true">“Понимаю. Можно покажу номер, который легко диктовать и не стыдно поставить на визитку?”</button>
-          <button class="answer" data-good="false">“Акция скоро закончится, потом будет дороже.”</button>
+        <div>
+          <span class="eyebrow">Практика скриптов</span>
+          <h2>Тренажер диалогов с клиентом</h2>
         </div>
-        <p class="muted" id="trainerFeedback">Выберите ответ, который мягко продолжает диалог и показывает ценность.</p>
-      </article>
+        <p>Сценарии взяты из продаж: “просто посмотреть”, “дорого”, “не нужна страховка”, “зачем Халва”, “я сам настрою”.</p>
+      </div>
+      <div class="trainer-screen">
+        <div class="card">
+          <div class="scenario-list" id="scenarioList"></div>
+        </div>
+        <div class="card glow">
+          <div id="scenarioBody"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="shell" id="missions">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Практические задания</span>
+          <h2>Миссии дня</h2>
+        </div>
+        <p>В демо загрузка чека имитируется и сохраняется в браузере. В финальной версии здесь будет проверка руководителем и общий рейтинг.</p>
+      </div>
+      <div class="mission-grid" id="missionGrid"></div>
+      <div class="demo-note">Демо без общей базы: прогресс, выбранные ответы и чеки сохраняются локально. Это позволяет протестировать сценарий обучения до внедрения настоящей авторизации и серверного хранения.</div>
     </section>
 
     <section class="shell" id="rating">
       <div class="section-head">
-        <h2>Турнирная таблица</h2>
-        <p>Для теста рейтинг считается в этом браузере. Общая база появится позже, когда сценарии утвердят.</p>
+        <div>
+          <span class="eyebrow">Итоги</span>
+          <h2>Рейтинг и титулы</h2>
+        </div>
+        <p>Рейтинг показывает, как будет выглядеть еженедельная и месячная мотивация. В демо текущий пользователь добавляется в таблицу локально.</p>
       </div>
-      <div class="leaderboard" id="leaderboard"></div>
-    </section>
-
-    <section class="shell" id="admin">
-      <div class="section-head">
-        <h2>Панель руководителя</h2>
-        <p>Демо проверки чеков, статусов и начисления XP. Так можно показать механику без платной базы.</p>
+      <div class="grid grid-2">
+        <div class="card glow">
+          <h3>Турнирная таблица</h3>
+          <div class="leaderboard" id="leaderboard"></div>
+        </div>
+        <div class="card">
+          <h3>Титулы Академии</h3>
+          <ul class="rule-list">
+            <li><strong class="cyan">Новичок Академии</strong> — регистрация и первый урок.</li>
+            <li><strong class="lime">Охотник за лидами</strong> — пройдены уроки по акциям и первая миссия.</li>
+            <li><strong class="gold">Мастер скриптов</strong> — закрыта серия тренажера.</li>
+            <li><strong class="gradient-text">Комбо-чемпион</strong> — выполнены миссии по Combo, SIM и допродажам.</li>
+          </ul>
+        </div>
       </div>
-      <div class="admin-grid">
-        <article class="card">
-          <div class="kicker">Проверка</div>
-          <h3>Заявки продавцов</h3>
-          <div class="proof" id="proofCard">
-            <div class="proof-top">
-              <div>
-                <strong>Анастасия Мельникова</strong>
-                <p class="muted">Миссия “Золотой старт”</p>
-              </div>
-              <span class="status" id="adminStatus">Нет чека</span>
-            </div>
-            <p class="muted" id="adminFile">Файл пока не прикреплен.</p>
-            <div class="mini-actions">
-              <button class="mini ok" id="approveProof" type="button">Принять</button>
-              <button class="mini no" id="rejectProof" type="button">Отклонить</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="kicker">Месяц</div>
-          <h3>Титулы и итоги</h3>
-          <p class="muted">Еженедельно можно награждать “Мастера скриптов”, “Охотника за лидами”, “Комбо-чемпиона” и “Сову месяца”.</p>
-          <div class="progress"><span style="--value: 68%"></span></div>
-          <p class="muted">До следующего титула: 280 XP</p>
-          <button class="btn secondary" id="resetDemo" type="button">Сбросить демо-данные</button>
-        </article>
-      </div>
-      <div class="demo-note">Демо-режим: данные сохраняются только в браузере тестирующего. Этого достаточно, чтобы руководители оценили сценарии, механику чека, рейтинг и вовлеченность до подключения общей базы.</div>
     </section>
   </main>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
-    const stateKey = "t2-academy-demo-state";
-    const baseState = {
-      xp: 420,
-      proof: "none",
-      fileName: "",
-      trainerDone: false
-    };
+    const storageKey = "t2-real-academy-demo";
 
-    const leaders = [
-      { name: "Марина Орлова", title: "Комбо-чемпион", xp: 1120 },
-      { name: "Илья Ким", title: "Мастер скриптов", xp: 980 },
-      { name: "Анастасия Мельникова", title: "Охотник за лидами", xp: 420, current: true },
-      { name: "Денис Соколов", title: "Новичок с огоньком", xp: 360 }
+    const modules = [
+      { id: "start", title: "Старт стажера", source: "Тетрадь стажера", xp: 80, tags: ["внешний вид", "ABC", "мотивация"] },
+      { id: "operator", title: "Операторские продукты", source: "T2 и тетрадь", xp: 110, tags: ["SIM", "MNP", "золотой номер", "MiXX"] },
+      { id: "sales", title: "Техника продаж", source: "Тренинг продаж", xp: 130, tags: ["контакт", "потребность", "возражения"] },
+      { id: "vmr", title: "ВМР на 100%", source: "Презентация ВМР", xp: 120, tags: ["анкета", "фокусные продукты", "вопросы"] },
+      { id: "combo", title: "Combo и допродажи", source: "Combo + допродажи", xp: 150, tags: ["страховка", "Smart Protect", "допы"] },
+      { id: "finance", title: "Рассрочка и Халва", source: "Халва / спецрассрочка", xp: 140, tags: ["10x20", "запреты", "скрипт"] },
+      { id: "devices", title: "Смартфоны и гаджеты", source: "iPhone / TECNO / носимая электроника", xp: 120, tags: ["iPhone", "TECNO", "TWS", "часы"] },
+      { id: "tradein", title: "Trade-in и Сивимарт", source: "Сивимарт", xp: 130, tags: ["оценка", "диагностика", "1С"] }
     ];
 
-    let state = loadState();
+    const lessons = [
+      {
+        id: "gold",
+        module: "operator",
+        title: "Золотой номер",
+        mentor: ["🐼", "Панда Питч", "Красивый номер продается не цифрами, а выгодой: его легче запомнить, продиктовать и поставить в рекламу."],
+        summary: "Акция помогает продать новую SIM через ценность красивого номера. В Перми золотой номер можно получить со скидкой 100% при подключении акционного тарифа и оплате периода.",
+        rules: [
+          "Клиент покупает новую SIM с подходящим тарифом и оплачивает акционный период.",
+          "В разговоре не начинаем с условий. Сначала показываем пользу: запоминаемость, статус, удобство для бизнеса.",
+          "Важно предупредить о сроках, оплате периода и условиях сохранения скидки."
+        ],
+        pitch: "Давайте подберем номер, который легко запомнить. Обычно такой стоит дорого, а сейчас его можно получить бесплатно при подключении тарифа.",
+        quiz: {
+          q: "С чего лучше начать предложение золотого номера?",
+          a: ["Сказать, что акция сложная, но выгодная", "Показать пользу красивого номера для клиента", "Сразу назвать все юридические условия"],
+          correct: 1
+        }
+      },
+      {
+        id: "combo",
+        module: "combo",
+        title: "Combo T2",
+        mentor: ["🦥", "Ленивец Лид", "Combo не надо продавать как набор из трех строк в чеке. Это готовое решение: смартфон, защита и связь."],
+        summary: "Combo соединяет смартфон, SIM и защитный продукт. Продавец объясняет не скидку ради скидки, а комплект, который закрывает покупку целиком.",
+        rules: [
+          "В одном предложении должны быть устройство, SIM и дополнительный защитный продукт.",
+          "Нельзя смешивать несовместимые акции. Перед продажей проверяем условия по актуальной таблице.",
+          "Для дорогих устройств и рассрочки важно смотреть отдельные правила выдачи и допов."
+        ],
+        pitch: "Можно взять смартфон не отдельно, а комплектом: устройство, связь и защита. Так покупка получается выгоднее и спокойнее для клиента.",
+        quiz: {
+          q: "Как лучше объяснить Combo клиенту?",
+          a: ["Это скидка, если добавить много всего", "Это готовый комплект под покупку смартфона", "Это акция только ради выполнения плана"],
+          correct: 1
+        }
+      },
+      {
+        id: "vmr",
+        module: "vmr",
+        title: "ВМР: фокусный продукт",
+        mentor: ["🦉", "Сова KPI", "ВМР любит конкретику: запрос решен, потребность выявлена, фокусный продукт предложен."],
+        summary: "Чтобы получить высокий результат по ВМР, мало просто обслужить клиента. Нужно решить запрос, задать вопрос, выявить потребность и предложить фокусный продукт.",
+        rules: [
+          "Сначала закрываем основной запрос клиента.",
+          "Затем задаем вопрос для выявления потребности: связь, интернет, безопасность, устройство, семья.",
+          "Предложение должно содержать продукт, выгоду, цену или акцию и следующий шаг."
+        ],
+        pitch: "Раз уж мы решили ваш вопрос, подскажу еще одну возможность: можно подключить MiXX и получить больше полезных сервисов за фиксированную стоимость.",
+        quiz: {
+          q: "Что обязательно для сильного ВМР-сценария?",
+          a: ["Только быстро обслужить", "Решить запрос и предложить фокусный продукт через потребность", "Предложить самый дорогой товар"],
+          correct: 1
+        }
+      },
+      {
+        id: "halva",
+        module: "finance",
+        title: "Халва и спецрассрочка",
+        mentor: ["🦉", "Сова KPI", "Финансовый продукт требует аккуратности: выгода, правило 10x20, запреты и личное присутствие клиента."],
+        summary: "Халва и спецрассрочка помогают оформить покупку комфортным платежом. Важно знать требования к клиенту, запреты и простую фразу выгоды.",
+        rules: [
+          "Карта оформляется только при личном присутствии клиента и корректных документах.",
+          "Правило 10x20 нужно объяснять простым языком: 10 покупок на сумму от 20 000 рублей за период.",
+          "Нельзя оформлять на третьих лиц, по копиям документов или при сомнительном состоянии клиента."
+        ],
+        pitch: "Можно оформить покупку в рассрочку и пользоваться картой для обычных покупок. Я сразу покажу, как выполнять правило 10x20, чтобы условия были понятны.",
+        quiz: {
+          q: "Что нельзя делать при оформлении Халвы?",
+          a: ["Проверять паспорт", "Оформлять без личного присутствия клиента", "Объяснять правило 10x20"],
+          correct: 1
+        }
+      },
+      {
+        id: "tws",
+        module: "devices",
+        title: "TWS и носимая электроника",
+        mentor: ["🐼", "Панда Питч", "Наушники продаются через сценарий: транспорт, спорт, звонки, работа, подарок."],
+        summary: "Носимая электроника продается лучше, когда продавец связывает модель с жизнью клиента: звонки, музыка, шум, автономность, подарок.",
+        rules: [
+          "Уточняем сценарий: звонки, музыка, спорт, транспорт, работа.",
+          "ANC предлагаем тем, кому важна тишина в дороге или офисе.",
+          "При покупке SIM можно предложить TWS со скидкой, если модель участвует в акции."
+        ],
+        pitch: "Если берете SIM, можно сразу подобрать TWS со скидкой. Для транспорта лучше модель с шумоподавлением, для звонков — с хорошим микрофоном.",
+        quiz: {
+          q: "Клиент ездит в автобусе и жалуется на шум. Что искать в наушниках?",
+          a: ["Только красивый кейс", "ANC или хорошую шумоизоляцию", "Самую низкую цену"],
+          correct: 1
+        }
+      },
+      {
+        id: "tradein",
+        module: "tradein",
+        title: "Сивимарт и trade-in",
+        mentor: ["🦥", "Ленивец Лид", "Trade-in начинается с простого вопроса: хотите узнать, сколько стоит ваш старый смартфон?"],
+        summary: "Trade-in помогает продать устройство дороже и добавить кросс-продажи. Продавец запускает оценку, проводит диагностику и правильно приземляет сделку в 1С.",
+        rules: [
+          "Всегда предлагать оценку клиентам, покупающим смартфон.",
+          "Использовать именно приложение диагностики, а не другое приложение.",
+          "Перед сделкой устройство должно быть сброшено и отвязано от аккаунтов."
+        ],
+        pitch: "Пока выбираем новый смартфон, давайте за минуту проверим, сколько можно получить за старый. Возможно, получится снизить итоговую стоимость.",
+        quiz: {
+          q: "Когда лучше предложить trade-in?",
+          a: ["Только если клиент сам спросил", "При выборе нового смартфона", "После оплаты, когда клиент уже ушел"],
+          correct: 1
+        }
+      }
+    ];
 
-    const els = {
-      xpTotal: document.querySelector("#xpTotal"),
-      titleNow: document.querySelector("#titleNow"),
-      proofStatus: document.querySelector("#proofStatus"),
-      progressBar: document.querySelector("#progressBar"),
-      progressText: document.querySelector("#progressText"),
-      receiptInput: document.querySelector("#receiptInput"),
-      receiptName: document.querySelector("#receiptName"),
-      sendReceipt: document.querySelector("#sendReceipt"),
-      trainerFeedback: document.querySelector("#trainerFeedback"),
-      leaderboard: document.querySelector("#leaderboard"),
-      adminStatus: document.querySelector("#adminStatus"),
-      adminFile: document.querySelector("#adminFile"),
-      approveProof: document.querySelector("#approveProof"),
-      rejectProof: document.querySelector("#rejectProof"),
-      resetDemo: document.querySelector("#resetDemo"),
-      toast: document.querySelector("#toast")
+    const scenarios = [
+      {
+        id: "look",
+        title: "Я просто посмотреть",
+        customer: "Я просто посмотреть зашел, мне ничего не нужно.",
+        options: [
+          ["Хорошо, если что зовите.", "weak", "Контакт обрывается, продавец не получает повода продолжить."],
+          ["Понимаю. Тогда покажу одну актуальную выгоду, а дальше спокойно посмотрите. У вас сейчас какой оператор?", "best", "Мягкое присоединение и короткий вопрос переводят в диалог."],
+          ["Но у нас сегодня акция, вам точно нужно посмотреть.", "ok", "Есть попытка зацепки, но звучит с давлением."]
+        ]
+      },
+      {
+        id: "expensive",
+        title: "Дорого",
+        customer: "Дорого. Я не хочу переплачивать за страховку и настройки.",
+        options: [
+          ["Тогда можем убрать, но потом ремонт будет дороже.", "ok", "Аргумент есть, но звучит пугающе и резко."],
+          ["Понимаю. Давайте разложу цену на месяц и покажу, за что вы платите: защита, время и отсутствие лишних затрат при поломке.", "best", "Ответ признает сомнение и переводит цену в ценность."],
+          ["Это не дорого, все берут.", "weak", "Обесценивание возражения снижает доверие."]
+        ]
+      },
+      {
+        id: "halva",
+        title: "Зачем Халва",
+        customer: "Зачем мне карта Халва? Я хотел просто рассрочку.",
+        options: [
+          ["Она обязательна, иначе не получится.", "weak", "Сухой ответ без выгоды вызывает сопротивление."],
+          ["Карта нужна для рассрочки, а еще может давать кэшбэк и контроль условий. Я покажу правило 10x20 простым примером.", "best", "Объясняет роль карты и снижает тревогу."],
+          ["Можете не пользоваться, просто подпишите.", "weak", "Так нельзя строить доверие к финансовому продукту."]
+        ]
+      },
+      {
+        id: "tws",
+        title: "Наушники не нужны",
+        customer: "Наушники не нужны, старые еще работают.",
+        options: [
+          ["Тогда не будем добавлять.", "weak", "Продавец не проверяет сценарий использования."],
+          ["Понял. А старые удобны для звонков и транспорта? Сейчас при SIM можно подобрать TWS со скидкой, если есть смысл именно под ваш сценарий.", "best", "Вопрос выявляет потребность и не давит."],
+          ["Но скидка 50%, надо брать.", "ok", "Выгода есть, но не привязана к жизни клиента."]
+        ]
+      },
+      {
+        id: "tradein",
+        title: "Старый телефон оставлю",
+        customer: "Старый телефон оставлю дома, вдруг пригодится.",
+        options: [
+          ["Как хотите.", "weak", "Нет предложения ценности."],
+          ["Конечно. Давайте просто узнаем оценку, это ни к чему не обязывает. Если сумма хорошая, сможете снизить платеж за новый.", "best", "Без давления предлагает безопасный следующий шаг."],
+          ["Старые телефоны быстро дешевеют, лучше сдавать сейчас.", "ok", "Аргумент полезный, но лучше начать мягче."]
+        ]
+      }
+    ];
+
+    const missions = [
+      { id: "m-gold", title: "Продать SIM по акции “Золотой номер”", xp: 160, proof: "чек или комментарий по продаже", mentor: "🐼" },
+      { id: "m-combo", title: "Собрать Combo: смартфон + SIM + защита", xp: 220, proof: "чек Combo или учебный скрин", mentor: "🦥" },
+      { id: "m-halva", title: "Оформить заявку на спецрассрочку / Халву", xp: 180, proof: "скрин статуса заявки", mentor: "🦉" },
+      { id: "m-tws", title: "Продать TWS при покупке SIM", xp: 130, proof: "чек с SIM и TWS", mentor: "🐼" },
+      { id: "m-vmr", title: "Отработать ВМР: вопрос + фокусный продукт", xp: 120, proof: "описание диалога", mentor: "🦉" },
+      { id: "m-tradein", title: "Предложить trade-in через Сивимарт", xp: 150, proof: "скрин оценки или комментарий", mentor: "🦥" }
+    ];
+
+    const baseState = {
+      name: "",
+      salon: "Пермь · ТЦ Планета",
+      lessonsDone: [],
+      quizDone: [],
+      trainerDone: [],
+      missionsDone: {},
+      xpBonus: 0
     };
+
+    let state = loadState();
+    let activeLesson = lessons[0].id;
+    let activeScenario = scenarios[0].id;
+
+    const $ = (id) => document.getElementById(id);
 
     function loadState() {
       try {
-        return { ...baseState, ...JSON.parse(localStorage.getItem(stateKey) || "{}") };
+        return { ...baseState, ...JSON.parse(localStorage.getItem(storageKey) || "{}") };
       } catch {
         return { ...baseState };
       }
     }
 
     function saveState() {
-      localStorage.setItem(stateKey, JSON.stringify(state));
-      render();
+      localStorage.setItem(storageKey, JSON.stringify(state));
+      renderAll();
     }
 
-    function getTitle(xp) {
-      if (xp >= 900) return "Комбо-чемпион";
-      if (xp >= 650) return "Мастер скриптов";
-      if (xp >= 420) return "Охотник за лидами";
-      return "Новичок с огоньком";
+    function xpTotal() {
+      const lessonXp = state.lessonsDone.reduce((sum, id) => {
+        const lesson = lessons.find((item) => item.id === id);
+        const module = lesson ? modules.find((item) => item.id === lesson.module) : null;
+        return sum + (module ? Math.round(module.xp / 2) : 50);
+      }, 0);
+      const quizXp = state.quizDone.length * 40;
+      const trainerXp = state.trainerDone.length * 70;
+      const missionXp = Object.keys(state.missionsDone).reduce((sum, id) => {
+        const mission = missions.find((item) => item.id === id);
+        return sum + (mission ? mission.xp : 0);
+      }, 0);
+      return lessonXp + quizXp + trainerXp + missionXp + (state.xpBonus || 0);
     }
 
-    function proofLabel() {
-      if (state.proof === "approved") return "Чек принят";
-      if (state.proof === "rejected") return "Нужна правка";
-      if (state.proof === "pending") return "На проверке";
-      return "Чек не загружен";
+    function titleByXp(xp) {
+      if (xp >= 1200) return "Комбо-чемпион";
+      if (xp >= 780) return "Мастер скриптов";
+      if (xp >= 430) return "Охотник за лидами";
+      if (xp >= 100) return "Новичок Академии";
+      return "Новичок";
     }
 
-    function progressValue() {
-      if (state.proof === "approved") return 100;
-      if (state.proof === "pending") return 78;
-      if (state.proof === "rejected") return 54;
-      return 42;
+    function completionPct() {
+      const total = lessons.length + scenarios.length + missions.length;
+      const done = state.lessonsDone.length + state.trainerDone.length + Object.keys(state.missionsDone).length;
+      return Math.round((done / total) * 100);
     }
 
-    function showToast(message) {
-      els.toast.textContent = message;
-      els.toast.classList.add("show");
-      window.setTimeout(() => els.toast.classList.remove("show"), 3200);
+    function initials(name) {
+      const parts = (name || "T2").trim().split(/\s+/).filter(Boolean);
+      return parts.slice(0, 2).map((item) => item[0]).join("").toUpperCase() || "T2";
     }
 
-    function renderLeaderboard() {
-      const rows = leaders.map((leader) => ({
-        ...leader,
-        xp: leader.current ? state.xp : leader.xp,
-        title: leader.current ? getTitle(state.xp) : leader.title
-      })).sort((a, b) => b.xp - a.xp);
+    function showToast(text) {
+      const toast = $("toast");
+      toast.textContent = text;
+      toast.classList.add("show");
+      setTimeout(() => toast.classList.remove("show"), 3000);
+    }
 
-      els.leaderboard.innerHTML = rows.map((leader, index) => `
-        <div class="leader ${leader.current ? "current" : ""}">
-          <span class="rank">${index + 1}</span>
-          <div>
-            <strong>${leader.name}</strong>
-            <div class="muted">${leader.title}</div>
+    function renderProfile() {
+      const xp = xpTotal();
+      $("heroXp").textContent = xp + " XP";
+      $("heroTitle").textContent = titleByXp(xp);
+      $("heroProgress").textContent = completionPct() + "%";
+      $("avatar").textContent = initials(state.name);
+      $("profileName").textContent = state.name || "Гость Академии";
+      $("profileMeta").textContent = state.name
+        ? `${state.salon} · ${titleByXp(xp)} · ${xp} XP`
+        : "Выберите имя и торговую точку, чтобы начать путь.";
+      $("nameInput").value = state.name || "";
+      $("salonInput").value = state.salon || "Пермь · ТЦ Планета";
+    }
+
+    function renderModules() {
+      const completedModules = new Set(lessons.filter((lesson) => state.lessonsDone.includes(lesson.id)).map((lesson) => lesson.module));
+      $("moduleMap").innerHTML = modules.map((module, idx) => {
+        const done = completedModules.has(module.id);
+        return `
+          <article class="card hover module-card ${done ? "done" : ""}">
+            <div class="module-num">${done ? "✓" : idx + 1}</div>
+            <div>
+              <div class="kicker">${module.source}</div>
+              <h3>${module.title}</h3>
+              <div class="tag-row">${module.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}</div>
+            </div>
+            <a class="btn small ${done ? "secondary" : ""}" href="#lessons" data-module-jump="${module.id}">${done ? "Повторить" : "Начать"}</a>
+          </article>
+        `;
+      }).join("");
+
+      document.querySelectorAll("[data-module-jump]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const lesson = lessons.find((item) => item.module === button.dataset.moduleJump);
+          if (lesson) {
+            activeLesson = lesson.id;
+            renderLessons();
+          }
+        });
+      });
+    }
+
+    function renderLessons() {
+      $("lessonTabs").innerHTML = lessons.map((lesson) => `
+        <button class="lesson-tab ${lesson.id === activeLesson ? "active" : ""}" type="button" data-lesson="${lesson.id}">
+          ${state.lessonsDone.includes(lesson.id) ? "✓ " : ""}${lesson.title}
+        </button>
+      `).join("");
+      document.querySelectorAll("[data-lesson]").forEach((button) => {
+        button.addEventListener("click", () => {
+          activeLesson = button.dataset.lesson;
+          renderLessons();
+        });
+      });
+
+      const lesson = lessons.find((item) => item.id === activeLesson) || lessons[0];
+      const done = state.lessonsDone.includes(lesson.id);
+      const quizDone = state.quizDone.includes(lesson.id);
+      $("activeMentorFace").textContent = lesson.mentor[0];
+      $("activeMentorName").textContent = lesson.mentor[1];
+      $("activeMentorLine").textContent = lesson.mentor[2];
+      const pct = Math.round((state.lessonsDone.length / lessons.length) * 100);
+      $("courseProgress").style.setProperty("--value", pct + "%");
+      $("courseProgressText").textContent = `${state.lessonsDone.length} из ${lessons.length} уроков завершено`;
+
+      $("lessonBody").innerHTML = `
+        <div>
+          <div class="kicker">${modules.find((item) => item.id === lesson.module)?.title || "Урок"}</div>
+          <h3>${lesson.title}</h3>
+          <p class="muted">${lesson.summary}</p>
+        </div>
+        <ul class="rule-list">
+          ${lesson.rules.map((rule) => `<li>${rule}</li>`).join("")}
+        </ul>
+        <div class="card">
+          <div class="kicker">Фраза продавца</div>
+          <p>${lesson.pitch}</p>
+        </div>
+        <div class="card">
+          <div class="kicker">Мини-тест</div>
+          <h3>${lesson.quiz.q}</h3>
+          <div class="quiz">
+            ${lesson.quiz.a.map((answer, idx) => `
+              <button class="answer" type="button" data-quiz-answer="${idx}">${answer}</button>
+            `).join("")}
           </div>
-          <strong class="xp">${leader.xp} XP</strong>
+        </div>
+        <div class="actions">
+          <button class="btn ${done ? "secondary" : ""}" type="button" id="completeLesson">${done ? "Урок завершен" : "Завершить урок"}</button>
+          <span class="tag ${quizDone ? "ok" : "warn"}">${quizDone ? "Тест пройден" : "Тест еще не пройден"}</span>
+        </div>
+      `;
+
+      document.querySelectorAll("[data-quiz-answer]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const selected = Number(button.dataset.quizAnswer);
+          document.querySelectorAll("[data-quiz-answer]").forEach((item) => item.classList.remove("correct", "wrong"));
+          if (selected === lesson.quiz.correct) {
+            button.classList.add("correct");
+            if (!state.quizDone.includes(lesson.id)) {
+              state.quizDone.push(lesson.id);
+              saveState();
+              showToast("Верно. +40 XP за мини-тест.");
+            } else {
+              showToast("Верно. Этот тест уже засчитан.");
+            }
+          } else {
+            button.classList.add("wrong");
+            showToast("Почти. Подумайте, где в ответе выгода для клиента.");
+          }
+        });
+      });
+
+      $("completeLesson").addEventListener("click", () => {
+        if (!state.lessonsDone.includes(lesson.id)) {
+          state.lessonsDone.push(lesson.id);
+          saveState();
+          showToast("Урок завершен. XP начислены.");
+        }
+      });
+    }
+
+    function renderTrainer() {
+      $("scenarioList").innerHTML = scenarios.map((scenario, idx) => `
+        <button class="scenario-btn ${scenario.id === activeScenario ? "active" : ""}" type="button" data-scenario="${scenario.id}">
+          <strong>${idx + 1}. ${scenario.title}</strong><br>
+          <span class="muted">${state.trainerDone.includes(scenario.id) ? "Пройдено" : "Нужно отработать"}</span>
+        </button>
+      `).join("");
+      document.querySelectorAll("[data-scenario]").forEach((button) => {
+        button.addEventListener("click", () => {
+          activeScenario = button.dataset.scenario;
+          renderTrainer();
+        });
+      });
+
+      const scenario = scenarios.find((item) => item.id === activeScenario) || scenarios[0];
+      $("scenarioBody").innerHTML = `
+        <div class="kicker">Клиент говорит</div>
+        <div class="customer">${scenario.customer}</div>
+        <div class="quiz" style="margin-top: 16px">
+          ${scenario.options.map((option, idx) => `
+            <button class="answer" type="button" data-scenario-answer="${idx}">
+              ${option[0]}
+            </button>
+          `).join("")}
+        </div>
+        <div class="card" id="scenarioFeedback" style="margin-top: 16px; display: none"></div>
+      `;
+
+      document.querySelectorAll("[data-scenario-answer]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const idx = Number(button.dataset.scenarioAnswer);
+          const option = scenario.options[idx];
+          document.querySelectorAll("[data-scenario-answer]").forEach((item) => item.classList.remove("correct", "wrong"));
+          button.classList.add(option[1] === "best" ? "correct" : "wrong");
+          $("scenarioFeedback").style.display = "block";
+          $("scenarioFeedback").innerHTML = `<div class="kicker">${option[1] === "best" ? "Лучший ответ" : option[1] === "ok" ? "Можно лучше" : "Слабый ответ"}</div><p>${option[2]}</p>`;
+          if (option[1] === "best" && !state.trainerDone.includes(scenario.id)) {
+            state.trainerDone.push(scenario.id);
+            saveState();
+            showToast("Сценарий закрыт. +70 XP.");
+          }
+        });
+      });
+    }
+
+    function renderMissions() {
+      $("missionGrid").innerHTML = missions.map((mission) => {
+        const proof = state.missionsDone[mission.id];
+        return `
+          <article class="card glow mission ${proof ? "done" : ""}">
+            <div class="kicker">${mission.mentor} Практика</div>
+            <h3>${mission.title}</h3>
+            <p class="muted">Подтверждение: ${mission.proof}</p>
+            <span class="tag ${proof ? "ok" : "warn"}">${proof ? "На проверке / принято в демо" : "Не выполнено"}</span>
+            <label class="file-label">
+              Прикрепить файл
+              <input type="file" data-file="${mission.id}" accept="image/*,.pdf">
+            </label>
+            <textarea rows="3" placeholder="Комментарий по продаже или учебному прохождению" data-comment="${mission.id}">${proof?.comment || ""}</textarea>
+            <button class="btn small ${proof ? "secondary" : ""}" type="button" data-submit-mission="${mission.id}">
+              ${proof ? "Обновить миссию" : "Отправить миссию"}
+            </button>
+            <span class="gold">+${mission.xp} XP</span>
+          </article>
+        `;
+      }).join("");
+
+      document.querySelectorAll("[data-submit-mission]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const id = button.dataset.submitMission;
+          const comment = document.querySelector(`[data-comment="${id}"]`).value.trim();
+          const fileInput = document.querySelector(`[data-file="${id}"]`);
+          const fileName = fileInput.files && fileInput.files[0] ? fileInput.files[0].name : state.missionsDone[id]?.fileName || "";
+          if (!comment && !fileName) {
+            showToast("Добавьте файл или короткий комментарий.");
+            return;
+          }
+          state.missionsDone[id] = { comment, fileName, date: new Date().toISOString() };
+          saveState();
+          showToast("Миссия отправлена. XP засчитаны в демо.");
+        });
+      });
+    }
+
+    function renderRating() {
+      const currentName = state.name || "Гость Академии";
+      const rows = [
+        { name: "Марина Орлова", title: "Комбо-чемпион", xp: 1360 },
+        { name: "Илья Ким", title: "Мастер скриптов", xp: 980 },
+        { name: currentName, title: titleByXp(xpTotal()), xp: xpTotal(), current: true },
+        { name: "Денис Соколов", title: "Охотник за лидами", xp: 520 },
+        { name: "Ксения Шварева", title: "Новичок Академии", xp: 180 }
+      ].sort((a, b) => b.xp - a.xp);
+
+      $("leaderboard").innerHTML = rows.map((row, idx) => `
+        <div class="leader ${row.current ? "current" : ""}">
+          <span class="rank">${idx + 1}</span>
+          <div>
+            <strong>${row.name}</strong>
+            <div class="muted">${row.title}</div>
+          </div>
+          <strong class="gold">${row.xp} XP</strong>
         </div>
       `).join("");
     }
 
-    function render() {
-      const progress = progressValue();
-      els.xpTotal.textContent = `${state.xp} XP`;
-      els.titleNow.textContent = getTitle(state.xp);
-      els.proofStatus.textContent = proofLabel();
-      els.progressBar.style.setProperty("--value", `${progress}%`);
-      els.progressText.textContent = progress === 100
-        ? "Миссия закрыта. XP начислены, можно подводить итоги недели."
-        : "Готово на " + progress + "%. Загрузите чек и дождитесь проверки руководителя.";
-
-      els.receiptName.textContent = state.fileName || "Файл не выбран";
-      els.adminFile.textContent = state.fileName ? `Прикреплен файл: ${state.fileName}` : "Файл пока не прикреплен.";
-      els.adminStatus.textContent = proofLabel();
-      els.adminStatus.className = "status";
-      if (state.proof === "approved") els.adminStatus.classList.add("ok");
-      if (state.proof === "rejected") els.adminStatus.classList.add("no");
-      renderLeaderboard();
+    function renderAll() {
+      renderProfile();
+      renderModules();
+      renderLessons();
+      renderTrainer();
+      renderMissions();
+      renderRating();
     }
 
-    els.receiptInput.addEventListener("change", (event) => {
-      const file = event.target.files && event.target.files[0];
-      state.fileName = file ? file.name : "";
-      saveState();
-    });
-
-    els.sendReceipt.addEventListener("click", () => {
-      if (!state.fileName) {
-        showToast("Сначала выберите файл чека.");
+    $("saveProfile").addEventListener("click", () => {
+      const name = $("nameInput").value.trim();
+      if (!name) {
+        showToast("Введите ФИО сотрудника.");
         return;
       }
-      state.proof = "pending";
+      state.name = name;
+      state.salon = $("salonInput").value;
       saveState();
-      showToast("Чек отправлен руководителю на проверку.");
+      showToast("Профиль создан. Добро пожаловать в Академию.");
     });
 
-    els.approveProof.addEventListener("click", () => {
-      if (!state.fileName) {
-        showToast("Пока нечего принимать: чек не загружен.");
-        return;
-      }
-      const wasApproved = state.proof === "approved";
-      state.proof = "approved";
-      if (!wasApproved) state.xp += 420;
-      saveState();
-      showToast("Миссия принята. Продавцу начислены XP и прогресс.");
-    });
-
-    els.rejectProof.addEventListener("click", () => {
-      if (!state.fileName) {
-        showToast("Пока нечего отклонять: чек не загружен.");
-        return;
-      }
-      state.proof = "rejected";
-      saveState();
-      showToast("Чек отправлен на доработку.");
-    });
-
-    document.querySelectorAll(".answer").forEach((button) => {
-      button.addEventListener("click", () => {
-        const good = button.dataset.good === "true";
-        document.querySelectorAll(".answer").forEach((item) => item.classList.remove("good", "bad"));
-        button.classList.add(good ? "good" : "bad");
-        if (good) {
-          if (!state.trainerDone) {
-            state.xp += 90;
-            state.trainerDone = true;
-            saveState();
-          }
-          els.trainerFeedback.textContent = "Верно: ответ признает позицию клиента и дает повод показать ценность акции.";
-          showToast("Тренажер пройден. +90 XP за сильный ответ.");
-        } else {
-          els.trainerFeedback.textContent = "Почти. Этот ответ либо обрывает контакт, либо давит срочностью без ценности.";
-        }
-      });
-    });
-
-    els.resetDemo.addEventListener("click", () => {
+    $("resetBtn").addEventListener("click", () => {
       state = { ...baseState };
-      localStorage.removeItem(stateKey);
-      document.querySelectorAll(".answer").forEach((item) => item.classList.remove("good", "bad"));
-      els.trainerFeedback.textContent = "Выберите ответ, который мягко продолжает диалог и показывает ценность.";
-      render();
+      localStorage.removeItem(storageKey);
+      activeLesson = lessons[0].id;
+      activeScenario = scenarios[0].id;
+      renderAll();
       showToast("Демо-данные сброшены.");
     });
 
-    render();
+    renderAll();
   </script>
 </body>
 </html>
