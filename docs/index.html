@@ -877,10 +877,16 @@
           <div class="field">
             <label for="salonInput">Торговая точка</label>
             <select id="salonInput">
-              <option>Пермь · ТЦ Планета</option>
-              <option>Кунгур · Бачурина 56А</option>
-              <option>Березники · Мира 82</option>
-              <option>Соликамск · Северная 55</option>
+              <option>Кунгур, Бачурина 56А</option>
+              <option>Кунгур, Карла Маркса 17А</option>
+              <option>Кунгур, Пугачёва 25</option>
+              <option>Березники, Мира 82</option>
+              <option>Березники, Пятилетки 41</option>
+              <option>Березники, Пятилетки 87А</option>
+              <option>Березники, Юбилейная 26</option>
+              <option>Соликамск, 20 лет Победы 117</option>
+              <option>Соликамск, Северная 48</option>
+              <option>Соликамск, Северная 55</option>
               <option>Демо-точка руководителя</option>
             </select>
           </div>
@@ -1195,7 +1201,7 @@
 
     const baseState = {
       name: "",
-      salon: "Пермь · ТЦ Планета",
+      salon: "Кунгур, Бачурина 56А",
       lessonsDone: [],
       quizDone: [],
       trainerDone: [],
@@ -1274,7 +1280,7 @@
         ? `${state.salon} · ${titleByXp(xp)} · ${xp} XP`
         : "Выберите имя и торговую точку, чтобы начать путь.";
       $("nameInput").value = state.name || "";
-      $("salonInput").value = state.salon || "Пермь · ТЦ Планета";
+      $("salonInput").value = state.salon || "Кунгур, Бачурина 56А";
     }
 
     function renderModules() {
