@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Академия продаж T2
 
-## Getting Started
+Внутренняя обучающая платформа для продавцов салонов T2. MVP, который не просто демо-лендинг,
+а рабочее приложение: с авторизацией продавца через выбор ТТ, тренажёром диалогов, прогрессом
+по модулям, аналитикой по салонам и сотрудникам, и админ-панелью для управления товарами,
+акциями, скриптами продаж, возражениями и обучающими материалами.
 
-First, run the development server:
+## Стек
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Next.js 16 (App Router)** + **React 19** + **TypeScript**
+- **Server Actions** для всех мутаций (без отдельного REST-слоя)
+- Хранилище — JSON-файл `data/db.json` (создаётся при первом запуске из `lib/seed.ts`)
+- Cookie-based «вход» сотрудника без паролей
+- Без БД, без авторизации с паролями, без внешних UI-китов и без Tailwind — только нативный CSS
+  в `app/globals.css`
+
+## Структура
+
+```
+app/
+  page.tsx                         # Главная: hero, метрики, в hero — блок входа (если не залогинен)
+  login/page.tsx                   # Экран входа: выбор ТТ → выбор ФИО или ручной ввод
+  layout.tsx                       # Шапка с UserSession (ФИО + ТТ или кнопка «Войти»)
+  globals.css                      # Все стили + дизайн-токены
+  actions.ts                       # Server Actions: вход, выход, тренажёр, прогресс, CRUD контента
+  _components/                     # Локальные компоненты
+    LoginCard.tsx                  # Карточка входа (Client)
+    UserSession.tsx                # Бейдж текущего пользователя в шапке
+    Trainer.tsx                    # Интерактивный тренажёр диалогов
+    ProductCard, PromotionCard, SalesScriptCard, ObjectionCard, MaterialCard …
+  learn/page.tsx                   # Профиль ученика, акции, фокус, тренажёр, модули, продукты,
+                                   # скрипты, возражения, комбо, материалы — всё в одной зоне
+  stats/                           # Аналитика
+    page.tsx                       # Общий рейтинг
+    salons/[id]/page.tsx           # Деталь по ТТ
+    employees/[id]/page.tsx        # Деталь по сотруднику
+  admin/page.tsx                   # CRUD: ТТ, сотрудники, товары, акции, скрипты, возражения,
+                                   # материалы, модули, тренажёр, комбо
+lib/
+  types.ts                         # Все доменные типы + schemaVersion
+  db.ts                            # JSON-хранилище с миграцией по schemaVersion
+  seed.ts                          # Начальные данные: 10 ТТ, реальные ФИО, демо-контент
+  session.ts                       # getCurrentEmployee → Employee | null, без fallback
+  analytics.ts                     # Агрегации XP, уровни, бейджи, статистика
+data/
+  db.json                          # Создаётся автоматически
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Запуск
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm install
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Открыть http://localhost:3000.
 
-## Learn More
+При первом запуске в папке `data/` появится `db.json`. Если запускаете после обновления
+(новый schemaVersion) — старая БД автоматически пересоздаётся из сидов.
 
-To learn more about Next.js, take a look at the following resources:
+## Авторизация
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Главная или `/login` → выбор торговой точки (10 реальных ТТ из Кудымкара, Березников и
+   Соликамска).
+2. Выбор сотрудника из выпадающего списка той ТТ, которую вы выбрали.
+3. Если вашего ФИО ещё нет в списке — кнопка «Меня нет в списке» открывает поле ручного ввода.
+   Платформа создаёт нового сотрудника с пометкой `isManual: true` и сразу авторизует его.
+4. После входа cookie `t2_current_employee` хранит выбранного сотрудника. Серверные компоненты
+   читают cookie и фильтруют данные «по текущему пользователю».
+5. В шапке справа — текущий ФИО + название ТТ + кнопка «Выйти».
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Никаких паролей, ручной ввод доступен любому — это MVP-вход для пилота.
 
-## Deploy on Vercel
+## Что умеет платформа
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Главная (`/`)** — hero, метрики, цифры платформы (живые), геймификация, бизнес-эффект.
+  Если пользователь не вошёл — в hero показывается компактная карточка входа.
+- **Вход (`/login`)** — выбор ТТ → выбор сотрудника или ручной ввод ФИО.
+- **Обучение (`/learn`)** — профиль ученика с XP/уровнем/бейджами, актуальные акции,
+  блок «что сегодня продавать», тренажёр диалогов, модули, продукты с фильтром, скрипты
+  продаж, ответы на возражения, комбо, обучающие материалы.
+- **Аналитика (`/stats`)** — сводный дашборд, рейтинг ТТ, лидерборд сотрудников,
+  распределение «лучший/норма/слабый».
+- **Салон (`/stats/salons/:id`)** — KPI ТТ, рейтинг сотрудников, прогресс модулей.
+- **Сотрудник (`/stats/employees/:id`)** — карточка профиля, KPI, разбивка ответов,
+  прохождение модулей, журнал попыток.
+- **Администрирование (`/admin`)** — 11 вкладок CRUD:
+  - Торговые точки (с раскрытием состава сотрудников и пометками «вручную»)
+  - Сотрудники (добавление, удаление, пометки)
+  - Товары (включая аргументы для продажи, частые возражения, готовый ответ)
+  - Акции (даты, привязка к продуктам, как предложить, фразы продавца)
+  - Скрипты продаж (ситуация → правильная/слабая фраза + объяснение)
+  - Возражения (4 уровня: плохой / хороший / лучший ответ + объяснение)
+  - Материалы (статья / чек-лист / совет / видео / гайд + связь с продуктом или акцией)
+  - Модули, Тренажёр (сценарии), Комбо
+  - Сервис: пересоздание БД из сидов
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Сборка и проверка
+
+```bash
+npm run build
+npm run lint
+npm run start
+```
+
+## Дальнейшее развитие
+
+- Заменить JSON-файл на Postgres + Prisma — миграция в один день.
+- Добавить настоящую авторизацию (Auth.js) поверх существующей модели сотрудников.
+- Редактирование сущностей в админке (сейчас — создание / удаление).
+- Экспорт аналитики (CSV) и e-mail руководителям ТТ.
