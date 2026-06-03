@@ -833,8 +833,8 @@
     <div class="shell hero">
       <div>
         <div class="eyebrow">Игровая платформа стажера</div>
-        <h1>Учимся продавать T2 через <span class="gradient-text">практику, миссии и титулы</span></h1>
-        <p class="lead">Руководитель может зайти как сотрудник, пройти маршрут обучения, изучить акции, потренироваться на клиентах, выполнить дневную миссию и увидеть прогресс в рейтинге.</p>
+        <h1>Учимся продавать продукты и акции через <span class="gradient-text">практику, миссии и титулы</span></h1>
+        <p class="lead">Сотрудник проходит маршрут обучения, изучает продукты T2 и предложения дилера, тренируется на клиентских ситуациях, выполняет дневные миссии и растет в рейтинге.</p>
         <div class="actions">
           <a class="btn" href="#login">Начать путь</a>
           <a class="btn secondary" href="#lessons">Посмотреть уроки</a>
@@ -858,7 +858,7 @@
           <span class="eyebrow">Регистрация</span>
           <h2>Войти как стажер</h2>
         </div>
-        <p>В демо-версии аккаунт сохраняется только в этом браузере. Этого достаточно, чтобы пройти путь и показать руководителям механику продукта.</p>
+        <p>Создайте учебный профиль, выберите торговую точку и начните маршрут сотрудника: уроки, тренировки, миссии и рейтинг.</p>
       </div>
       <div class="card glow">
         <div class="profile-strip" id="profileStrip">
@@ -867,7 +867,7 @@
             <h3 id="profileName">Гость Академии</h3>
             <p class="muted" id="profileMeta">Выберите имя и торговую точку, чтобы начать путь.</p>
           </div>
-          <button class="btn secondary small" id="resetBtn" type="button">Сбросить демо</button>
+          <button class="btn secondary small" id="resetBtn" type="button">Начать заново</button>
         </div>
         <div class="login-panel">
           <div class="field">
@@ -887,7 +887,6 @@
               <option>Соликамск, 20 лет Победы 117</option>
               <option>Соликамск, Северная 48</option>
               <option>Соликамск, Северная 55</option>
-              <option>Демо-точка руководителя</option>
             </select>
           </div>
         </div>
@@ -978,10 +977,10 @@
           <span class="eyebrow">Практические задания</span>
           <h2>Миссии дня</h2>
         </div>
-        <p>В демо загрузка чека имитируется и сохраняется в браузере. В финальной версии здесь будет проверка руководителем и общий рейтинг.</p>
+        <p>Практические задания связывают обучение с реальными продажами: сотрудник выполняет задачу, прикладывает подтверждение и получает XP.</p>
       </div>
       <div class="mission-grid" id="missionGrid"></div>
-      <div class="demo-note">Демо без общей базы: прогресс, выбранные ответы и чеки сохраняются локально. Это позволяет протестировать сценарий обучения до внедрения настоящей авторизации и серверного хранения.</div>
+      <div class="demo-note">Руководитель видит, какие уроки пройдены, какие задания отправлены на проверку и где сотруднику нужна помощь. Еженедельные итоги помогают отмечать лучших и быстрее подтягивать отстающих.</div>
     </section>
 
     <section class="shell" id="rating">
@@ -990,7 +989,7 @@
           <span class="eyebrow">Итоги</span>
           <h2>Рейтинг и титулы</h2>
         </div>
-        <p>Рейтинг показывает, как будет выглядеть еженедельная и месячная мотивация. В демо текущий пользователь добавляется в таблицу локально.</p>
+        <p>Рейтинг помогает видеть прогресс сотрудников, отмечать лучших за неделю и подводить месячные итоги по обучению и практике.</p>
       </div>
       <div class="grid grid-2">
         <div class="card glow">
@@ -1016,14 +1015,14 @@
     const storageKey = "t2-real-academy-demo";
 
     const modules = [
-      { id: "start", title: "Старт стажера", source: "Адаптация", xp: 80, tags: ["внешний вид", "ABC", "мотивация"] },
-      { id: "operator", title: "Операторские продукты", source: "База T2", xp: 110, tags: ["SIM", "MNP", "золотой номер", "MiXX"] },
-      { id: "sales", title: "Техника продаж", source: "Продажи", xp: 130, tags: ["контакт", "потребность", "возражения"] },
-      { id: "vmr", title: "ВМР на 100%", source: "Качество обслуживания", xp: 120, tags: ["анкета", "фокусные продукты", "вопросы"] },
-      { id: "combo", title: "Combo и допродажи", source: "Комплексная продажа", xp: 150, tags: ["страховка", "Smart Protect", "допы"] },
-      { id: "finance", title: "Рассрочка и Халва", source: "Финансовые продукты", xp: 140, tags: ["10x20", "запреты", "скрипт"] },
-      { id: "devices", title: "Смартфоны и гаджеты", source: "Продуктовая экспертиза", xp: 120, tags: ["iPhone", "TECNO", "TWS", "часы"] },
-      { id: "tradein", title: "Trade-in и Сивимарт", source: "Сервисные сценарии", xp: 130, tags: ["оценка", "диагностика", "1С"] }
+      { id: "start", title: "Старт стажера", subtitle: "Вход в роль, стандарты, ABC и личная мотивация.", xp: 80, tags: ["внешний вид", "ABC", "мотивация"] },
+      { id: "operator", title: "Операторские продукты", subtitle: "SIM, тарифы, перенос номера, золотой номер и MiXX.", xp: 110, tags: ["SIM", "MNP", "золотой номер", "MiXX"] },
+      { id: "sales", title: "Техника продаж", subtitle: "Контакт, выявление потребности, презентация, возражения и закрытие.", xp: 130, tags: ["контакт", "потребность", "возражения"] },
+      { id: "vmr", title: "ВМР на 100%", subtitle: "Как решать запрос клиента и предлагать фокусные продукты.", xp: 120, tags: ["анкета", "фокусные продукты", "вопросы"] },
+      { id: "combo", title: "Combo и допродажи", subtitle: "Комплектная продажа смартфона, SIM, защиты, услуг и аксессуаров.", xp: 150, tags: ["страховка", "Smart Protect", "допы"] },
+      { id: "finance", title: "Рассрочка и Халва", subtitle: "Спецрассрочка, правило 10x20, запреты и понятная выгода клиента.", xp: 140, tags: ["10x20", "запреты", "скрипт"] },
+      { id: "devices", title: "Смартфоны и гаджеты", subtitle: "iPhone, TECNO, TWS, часы, повербанки и сценарии выбора.", xp: 120, tags: ["iPhone", "TECNO", "TWS", "часы"] },
+      { id: "tradein", title: "Trade-in и Сивимарт", subtitle: "Оценка устройства, диагностика, оформление в 1С и передача.", xp: 130, tags: ["оценка", "диагностика", "1С"] }
     ];
 
     const lessons = [
@@ -1292,8 +1291,9 @@
           <article class="card hover module-card ${done ? "done" : ""}">
             <div class="module-num">${done ? "✓" : idx + 1}</div>
             <div>
-              <div class="kicker">${module.source}</div>
+              <div class="kicker">Уровень ${idx + 1}</div>
               <h3>${module.title}</h3>
+              <p class="muted">${module.subtitle}</p>
               <div class="tag-row">${module.tags.map((tag) => `<span class="tag">${tag}</span>`).join("")}</div>
             </div>
             <a class="btn small ${done ? "secondary" : ""}" href="#lessons" data-module-jump="${module.id}">${done ? "Повторить" : "Начать"}</a>
@@ -1445,12 +1445,12 @@
             <div class="kicker">${mission.mentor} Практика</div>
             <h3>${mission.title}</h3>
             <p class="muted">Подтверждение: ${mission.proof}</p>
-            <span class="tag ${proof ? "ok" : "warn"}">${proof ? "На проверке / принято в демо" : "Не выполнено"}</span>
+            <span class="tag ${proof ? "ok" : "warn"}">${proof ? "Отправлено на проверку" : "Не выполнено"}</span>
             <label class="file-label">
               Прикрепить файл
               <input type="file" data-file="${mission.id}" accept="image/*,.pdf">
             </label>
-            <textarea rows="3" placeholder="Комментарий по продаже или учебному прохождению" data-comment="${mission.id}">${proof?.comment || ""}</textarea>
+            <textarea rows="3" placeholder="Комментарий по продаже или выполненной задаче" data-comment="${mission.id}">${proof?.comment || ""}</textarea>
             <button class="btn small ${proof ? "secondary" : ""}" type="button" data-submit-mission="${mission.id}">
               ${proof ? "Обновить миссию" : "Отправить миссию"}
             </button>
@@ -1471,7 +1471,7 @@
           }
           state.missionsDone[id] = { comment, fileName, date: new Date().toISOString() };
           saveState();
-          showToast("Миссия отправлена. XP засчитаны в демо.");
+          showToast("Миссия отправлена. XP начислены.");
         });
       });
     }
@@ -1525,7 +1525,7 @@
       activeLesson = lessons[0].id;
       activeScenario = scenarios[0].id;
       renderAll();
-      showToast("Демо-данные сброшены.");
+      showToast("Учебный прогресс сброшен.");
     });
 
     renderAll();
